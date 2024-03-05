@@ -6,11 +6,15 @@ const uri = process.env.MONGOO_URI
 // add the admin routes here
 const adminRouter = require('././Admin/routes/adminRoute');
 
-// add the error middlewares
+// Thats package to integrate our frontend and backend
+const cors = require('cors');
+
+// add the error middlewares route
 const { notFound, errorHandler } = require('./Admin/middleware/errorMdl');
 
 env.config();
 app.use(express.json());
+app.use(cors());
 app.use('/api/admin', adminRouter);
 
 // connect our databse here

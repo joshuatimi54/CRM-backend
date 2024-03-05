@@ -1,3 +1,4 @@
+const generateToken = require('../config/adminToken');
 const Admin = require('../models/amdinAuth');
 const asyncHandler = require('express-async-handler');
 
@@ -27,7 +28,8 @@ const adminLogin = asyncHandler(async(req, res) => {
             email: findadmin?.email,
             mobile: findadmin?.mobile,
             password: findadmin?.password,
-            role: findadmin?.role
+            role: findadmin?.role,
+            token: generateToken(findadmin?._id)
         })
     }else{
         throw new Error('Wrong Admin Details...!!')
