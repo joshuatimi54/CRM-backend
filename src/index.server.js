@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const env = require('dotenv');
 const mongoose = require('mongoose');
-const uri = process.env.MONGOO_URI
+const cookieParser = require('cookie-parser');
+
 // add the admin routes here
 const adminRouter = require('././Admin/routes/adminRoute');
 
@@ -13,8 +14,9 @@ const cors = require('cors');
 const { notFound, errorHandler } = require('./Admin/middleware/errorMdl');
 
 env.config();
-app.use(express.json());
 app.use(cors());
+app.use(cookieParser())
+app.use(express.json());
 app.use('/api/admin', adminRouter);
 
 // connect our databse here

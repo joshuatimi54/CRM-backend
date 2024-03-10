@@ -14,7 +14,7 @@ const adminMiddleware = asyncHandler(async(req, res, next) => {
         try{
 
             if(token){
-                const decoded = jwt.verify(token, process.env.JWT_SECRET);
+                const decoded = jwt.verify(token, process.env.MONGO_DB_SECRET);
                 const user = await Admin.findById(decoded?.id);
                 req.user = user;
                 next();
